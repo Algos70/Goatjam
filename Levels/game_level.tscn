@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d23b3y32f42ie"]
+
+[ext_resource type="PackedScene" uid="uid://behoiak0efutg" path="res://Characters/player_slave.tscn" id="1_4ufnx"]
+
+[node name="GameLevel" type="Node2D"]
+
+[node name="PlayerSlave" parent="." instance=ExtResource("1_4ufnx")]
+position = Vector2(0, -1)
