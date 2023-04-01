@@ -637,4 +637,5 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_qxw5m")]
-position = Vector2(209, 78)
+position = Vector2(448, -28)
+hp = 5

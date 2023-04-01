@@ -1,40 +1,85 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp035upb44qsh"]
+[gd_scene load_steps=17 format=3 uid="uid://bp035upb44qsh"]
 
 [ext_resource type="Script" path="res://Characters/enemy1.gd" id="1_hs7nn"]
-[ext_resource type="Texture2D" uid="uid://c1s2hwyypq4xw" path="res://Assets/pngwing.com.png" id="1_k11ia"]
 [ext_resource type="PackedScene" uid="uid://cn0qvo0p6hqxd" path="res://Utility/hurt_box.tscn" id="3_e3ptd"]
 [ext_resource type="PackedScene" uid="uid://b6oe3vsvvfjsu" path="res://Utility/hit_box.tscn" id="4_lr23b"]
 [ext_resource type="PackedScene" uid="uid://b5qfni5xo3o8o" path="res://Utility/attack_range.tscn" id="6_075mc"]
+[ext_resource type="Texture2D" uid="uid://doday1mp6sida" path="res://Assets/Gokhan_Assets/svgtopng_3/Düşman Saldırı.png" id="6_yv8nl"]
+[ext_resource type="Texture2D" uid="uid://dge5r4x8gof7b" path="res://Assets/Gokhan_Assets/svgtopng_3/Düşman Savunma .png" id="7_yikf2"]
+[ext_resource type="Texture2D" uid="uid://dl1gy24spk5x2" path="res://Assets/Gokhan_Assets/svgtopng_3/Düşman Normal.png" id="8_o23jr"]
+[ext_resource type="Texture2D" uid="uid://tw16ap62u3p6" path="res://Assets/Gokhan_Assets/svgtopng_3/Düşman Normal Hareket.png" id="9_cl1dx"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ws85x"]
-height = 37.4862
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7hv0"]
+radius = 16.0489
+height = 90.4078
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5radb"]
-size = Vector2(32, 40)
+size = Vector2(46, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmuwa"]
-size = Vector2(16, 27)
+size = Vector2(40, 67.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nce84"]
+atlas = ExtResource("6_yv8nl")
+region = Rect2(0, 0, 744, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyer8"]
+atlas = ExtResource("7_yikf2")
+region = Rect2(0, 0, 744, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ld62"]
+atlas = ExtResource("8_o23jr")
+region = Rect2(0, 0, 744, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swsjt"]
+atlas = ExtResource("9_cl1dx")
+region = Rect2(0, 0, 744, 1052)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a4n7l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nce84")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyer8")
+}],
+"loop": true,
+"name": &"defend",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ld62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swsjt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_hs7nn")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -18)
-rotation = 3.14159
-scale = Vector2(0.0427138, -0.0567186)
-texture = ExtResource("1_k11ia")
+hp = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -17)
+position = Vector2(-4.76837e-07, -9.99999)
 scale = Vector2(0.872332, 0.907001)
-shape = SubResource("CapsuleShape2D_ws85x")
+shape = SubResource("CapsuleShape2D_d7hv0")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_e3ptd")]
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(0, -18)
+position = Vector2(4, -13)
 shape = SubResource("RectangleShape2D_5radb")
 
 [node name="DisableTimer" parent="HurtBox" index="1"]
@@ -45,11 +90,18 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(0, -17.5)
+position = Vector2(29, -9.75)
 shape = SubResource("RectangleShape2D_gmuwa")
 
 [node name="detectionRange" parent="." instance=ExtResource("6_075mc")]
-position = Vector2(0, -16)
+position = Vector2(0, -1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7.62939e-06, -0.999992)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_a4n7l")
+animation = &"defend"
+autoplay = "idle"
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="detectionRange" to="." method="_on_detection_range_body_entered"]

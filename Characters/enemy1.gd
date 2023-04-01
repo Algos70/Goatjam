@@ -10,7 +10,7 @@ var canInteract = false
 var canDefend = true
 
 var defenceCooldown = 0
-
+var animation_locked = false
 var state = "idle"
 var landed = false
 var isOnEdge = false
@@ -18,8 +18,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var rng = RandomNumberGenerator.new()
 
 
+
 @onready var detectionRange = $"detectionRange"
 @onready var player = get_parent().get_node("PlayerSlave") #change player name
+@onready var animatedSprite: AnimatedSprite2D = $"AnimatedSprite2D" 
 
 func _process(delta):
 	if defenceCooldown > 0:
@@ -58,7 +60,7 @@ func _process(delta):
 	
 	# Flip sprite to face direction of movement
 	if velocity.x != 0:
-		get_node("Sprite2D").flip_h = isFacingLeft
+		animatedSprite.flip_h = isFacingLeft
 	
 func on_player_attack():
 	var choice = rng.randi_range(0, 1)
@@ -90,3 +92,9 @@ func _on_detection_range_body_entered(body):
 func _on_detection_range_body_exited(body):
 	if body.name == player.name:
 		state = "idle"
+		
+func update_animation():
+	if not animation_locked:
+		pass
+		
+	
