@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvd0rnsyt2dlo"]
+
+[ext_resource type="Texture2D" uid="uid://c1s2hwyypq4xw" path="res://Assets/pngwing.com.png" id="1_re3bw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duji4"]
+size = Vector2(14, 15)
+
+[node name="Spikes" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.0296985, 0.0332574)
+texture = ExtResource("1_re3bw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_duji4")
