@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-var hp = 1
+@export var SPEED = 600.0
+const JUMP_VELOCITY = -600.0
+var hp = 5
 var leftPressed = false
 var rightPressed = true
 

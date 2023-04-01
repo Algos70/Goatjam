@@ -3,11 +3,8 @@ extends Control
 @onready var click_sound = $Quit2/Click
 
 
-
-
-
-
-
+func _ready():
+	pass
 
 
 
@@ -19,3 +16,11 @@ func _on_quit_2_pressed():
 	get_tree().quit()
 
 
+
+
+func _on_restart_mouse_entered():
+	click_sound.play()
+
+
+func _on_quit_2_mouse_entered():
+	click_sound.play()

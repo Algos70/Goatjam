@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0d7wjw6wah3n"]
+[gd_scene load_steps=7 format=3 uid="uid://c0d7wjw6wah3n"]
 
 [ext_resource type="Script" path="res://UI/game_over_page.gd" id="1_nt6ex"]
 [ext_resource type="Texture2D" uid="uid://dl4lmaeknrja" path="res://Assets/arenaResim.jpg" id="1_tv8bh"]
 [ext_resource type="FontFile" uid="uid://bky0mpdfsladh" path="res://Assets/04B_30__.TTF" id="2_d536m"]
 [ext_resource type="Script" path="res://UI/Play.gd" id="3_8wytu"]
 [ext_resource type="Script" path="res://UI/Quit.gd" id="4_mtrdm"]
+[ext_resource type="AudioStream" uid="uid://chop75h6ww8qq" path="res://Sound/Effects/Click.wav" id="5_nbinf"]
 
 [node name="GameOverPage" type="Control"]
 layout_mode = 3
@@ -61,6 +62,7 @@ text = "RESTART"
 script = ExtResource("3_8wytu")
 
 [node name="Click" type="AudioStreamPlayer" parent="Restart"]
+stream = ExtResource("5_nbinf")
 volume_db = 1.0
 
 [node name="Quit2" type="Button" parent="."]
@@ -76,6 +78,7 @@ text = "QUIT"
 script = ExtResource("4_mtrdm")
 
 [node name="Click" type="AudioStreamPlayer" parent="Quit2"]
+stream = ExtResource("5_nbinf")
 volume_db = 1.0
 
 [connection signal="mouse_entered" from="Restart" to="." method="_on_restart_mouse_entered"]
