@@ -53,5 +53,5 @@ func _physics_process(delta):
 func _on_hurt_box_hurt(damage):
 	hp -= damage
 	if hp <= 0:
-		get_tree().change_scene_to_file("res://Utility/game_over_screen.tscn")
+		get_tree().change_scene_to_file("res://UI/game_over_page.tscn")
 	print(hp)
