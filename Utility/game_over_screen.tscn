@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cvlmco57nc14t"]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Button1" type="Button" parent="Panel/MarginContainer/Rows"]
+layout_mode = 2
+text = "RESTART"
+
+[node name="Button2" type="Button" parent="Panel/MarginContainer/Rows"]
+layout_mode = 2
+text = "QUIT"
