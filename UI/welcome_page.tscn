@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddrnj71svy8pc"]
+[gd_scene load_steps=9 format=3 uid="uid://ddrnj71svy8pc"]
 
 [ext_resource type="AudioStream" uid="uid://gqqr2ktobers" path="res://Sound/Music/FonMusic.wav" id="1_aov7p"]
 [ext_resource type="Texture2D" uid="uid://dl4lmaeknrja" path="res://Assets/arenaResim.jpg" id="2_kdbko"]
+[ext_resource type="Texture2D" uid="uid://ped28jnm3dbw" path="res://Assets/Düƒman Saldìrì.png" id="3_kcoyq"]
+[ext_resource type="Texture2D" uid="uid://bm6bhdcxgnusg" path="res://Assets/Karakter Kìlìçlì.png" id="4_gxib4"]
+[ext_resource type="FontFile" uid="uid://bky0mpdfsladh" path="res://Assets/04B_30__.TTF" id="5_jtawo"]
+[ext_resource type="Script" path="res://UI/Header.gd" id="6_4idrd"]
+[ext_resource type="Script" path="res://UI/Play.gd" id="7_c0oxd"]
+[ext_resource type="Script" path="res://UI/Quit.gd" id="8_1v0i0"]
 
 [node name="WelcomePage" type="Control"]
 layout_mode = 3
@@ -11,8 +17,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FonMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_aov7p")
+volume_db = 4.95
+autoplay = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960.75, 538.5)
+scale = Vector2(1.74409, 1.70283)
+texture = ExtResource("2_kdbko")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -26.0
+offset_bottom = -63.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -22,7 +44,64 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
-position = Vector2(960.75, 538.5)
-scale = Vector2(1.74409, 1.70283)
-texture = ExtResource("2_kdbko")
+[node name="DüƒmanSaldìrì" type="Sprite2D" parent="."]
+position = Vector2(1688, 610)
+scale = Vector2(-1.09347, 1.02369)
+texture = ExtResource("3_kcoyq")
+
+[node name="KarakterKìlìçlì" type="Sprite2D" parent="."]
+position = Vector2(321, 675)
+texture = ExtResource("4_gxib4")
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 2
+offset_left = -35.0
+offset_top = 101.0
+offset_right = 1885.0
+offset_bottom = 409.0
+theme_override_colors/font_color = Color(0.490196, 0.509804, 0.792157, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_jtawo")
+theme_override_font_sizes/font_size = 70
+text = "MARIO AND SANDALS"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_4idrd")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 676.0
+offset_top = 482.0
+offset_right = 1178.0
+offset_bottom = 618.0
+theme_override_colors/font_color = Color(0.941176, 0.913725, 0.74902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_jtawo")
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+script = ExtResource("7_c0oxd")
+
+[node name="Click" type="AudioStreamPlayer" parent="Play"]
+volume_db = 1.0
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 664.0
+offset_right = 1182.0
+offset_bottom = 800.0
+theme_override_colors/font_color = Color(0.941176, 0.913725, 0.74902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_jtawo")
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+script = ExtResource("8_1v0i0")
+
+[node name="Click" type="AudioStreamPlayer" parent="Quit"]
+volume_db = 1.0
+
+[connection signal="mouse_entered" from="Play" to="Play" method="_on_mouse_entered"]
+[connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
+[connection signal="mouse_entered" from="Quit" to="Quit" method="_on_mouse_entered"]
+[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]

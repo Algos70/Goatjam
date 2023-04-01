@@ -18,3 +18,7 @@ func _process(delta):
 	var color = start_color.lerp(end_color, t)
 	self.add_theme_color_override("font_color", color)
 	
+
+
+func _on_quit_mouse_entered():
+	pass # Replace with function body.
