@@ -67,6 +67,8 @@ func on_player_attack():
 	if canDefend and choice == 0:
 		defenceCooldown = 3
 		canDefend = false
+		update_animation("defend")
+		animation_locked = true
 		return true
 	return false
 		
@@ -81,20 +83,20 @@ func _on_hurt_box_hurt(damage):
 			queue_free() #if hp 0 or lower delete the enemy from the game
 			
 		move_and_slide()
+		animation_locked = false
+		update_animation("idle")
 
 
 func _on_detection_range_body_entered(body):
 	if body.name == player.name:
 		state = "detected"
 
-
-
 func _on_detection_range_body_exited(body):
 	if body.name == player.name:
 		state = "idle"
 		
-func update_animation():
+func update_animation(animation):
 	if not animation_locked:
-		pass
+		animatedSprite.play(animation)
 		
 	
