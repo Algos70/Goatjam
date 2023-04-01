@@ -6,7 +6,7 @@ var hp = 5
 var leftPressed = false
 var rightPressed = true
 
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
 @onready var hitBox = $HitBox/CollisionShape2D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -45,9 +45,6 @@ func _physics_process(delta):
 			hitBox.position.x *= -1
 			leftPressed = false
 			rightPressed = true
-	
-
-	
 
 
 func _on_hurt_box_hurt(damage):
@@ -55,3 +52,8 @@ func _on_hurt_box_hurt(damage):
 	if hp <= 0:
 		get_tree().change_scene_to_file("res://UI/game_over_page.tscn")
 	print(hp)
+
+func startAttack():
+	sprite.play("attack")
+func endAttack():
+	sprite.play("idle")

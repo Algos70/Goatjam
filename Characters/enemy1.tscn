@@ -17,7 +17,7 @@ height = 90.4078
 size = Vector2(46, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmuwa"]
-size = Vector2(40, 67.5)
+size = Vector2(70, 76.75)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nce84"]
 atlas = ExtResource("6_yv8nl")
@@ -91,7 +91,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(29, -9.75)
+position = Vector2(1, -4.625)
 shape = SubResource("RectangleShape2D_gmuwa")
 
 [node name="DisableHitBoxTimer" parent="HitBox" index="1"]
@@ -106,9 +106,10 @@ position = Vector2(0, -1)
 position = Vector2(7.62939e-06, -0.999992)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_a4n7l")
-animation = &"defend"
+animation = &"attack"
 autoplay = "idle"
 
+[connection signal="freeMem" from="." to="HurtBox" method="_on_character_body_2d_free_mem"]
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="detectionRange" to="." method="_on_detection_range_body_entered"]
 [connection signal="body_exited" from="detectionRange" to="." method="_on_detection_range_body_exited"]
