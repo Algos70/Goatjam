@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d23b3y32f42ie"]
+[gd_scene load_steps=8 format=3 uid="uid://d23b3y32f42ie"]
 
 [ext_resource type="PackedScene" uid="uid://behoiak0efutg" path="res://Characters/player_slave.tscn" id="1_4ufnx"]
+[ext_resource type="Script" path="res://Levels/game_level.gd" id="1_l0uqy"]
 [ext_resource type="PackedScene" uid="uid://doxf34jut7axf" path="res://Levels/Level_Objects/platform_air.tscn" id="2_73evd"]
 [ext_resource type="Texture2D" uid="uid://xsjoi3nshqle" path="res://Assets/Zemin Temiz.png" id="2_pu3yx"]
 [ext_resource type="PackedScene" uid="uid://bp035upb44qsh" path="res://Characters/enemy1.tscn" id="4_qxw5m"]
@@ -608,6 +609,7 @@ sources/0 = SubResource("TileSetAtlasSource_wh5mi")
 
 [node name="GameLevel" type="Node2D"]
 position = Vector2(504, 331)
+script = ExtResource("1_l0uqy")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_edl5f")
