@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c1s2hwyypq4xw" path="res://Assets/pngwing.com.png" id="1_k11ia"]
 [ext_resource type="PackedScene" uid="uid://cn0qvo0p6hqxd" path="res://Utility/hurt_box.tscn" id="3_e3ptd"]
 [ext_resource type="PackedScene" uid="uid://b6oe3vsvvfjsu" path="res://Utility/hit_box.tscn" id="4_lr23b"]
-[ext_resource type="PackedScene" uid="uid://b52s8cbffyyln" path="res://Utility/detectionRange.tscn" id="5_knpoj"]
-[ext_resource type="PackedScene" uid="uid://b5qfni5xo3o8o" path="res://Utility/attack_range.tscn" id="6_075mc"]
+[ext_resource type="PackedScene" path="res://Utility/detectionRange.tscn" id="5_knpoj"]
+[ext_resource type="PackedScene" path="res://Utility/attack_range.tscn" id="6_075mc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ws85x"]
 height = 37.4862
@@ -50,10 +50,8 @@ position = Vector2(0, -17.5)
 shape = SubResource("RectangleShape2D_gmuwa")
 
 [node name="attack_range" parent="." instance=ExtResource("5_knpoj")]
-position = Vector2(-2, -18)
 
 [node name="detectionRange" parent="." instance=ExtResource("6_075mc")]
-position = Vector2(0, -16)
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="attack_range" to="." method="_on_attack_range_body_entered"]
