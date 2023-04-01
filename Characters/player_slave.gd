@@ -2,7 +2,12 @@ extends CharacterBody2D
 
 @export var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+var hp = 1
+var leftPressed = false
+var rightPressed = true
 
+@onready var sprite = $Sprite2D
+@onready var hitBox = $HitBox/CollisionShape2D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -27,5 +32,24 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
+	#flipping collisionshapes and sprite mumbo jumbo
+	if Input.is_action_just_pressed("left"):
+		sprite.flip_h = true
+		if not leftPressed:
+			hitBox.position.x *= -1
+			rightPressed = false
+			leftPressed = true
+	if Input.is_action_just_pressed("right"):
+		sprite.flip_h = false
+		if not rightPressed:
+			hitBox.position.x *= -1
+			leftPressed = false
+			rightPressed = true
+	
 
 	
+
+
+func _on_hurt_box_hurt(damage):
+	hp -= damage
+	print(hp)

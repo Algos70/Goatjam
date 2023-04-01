@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bp035upb44qsh"]
+
+[ext_resource type="Script" path="res://Characters/enemy1.gd" id="1_hs7nn"]
+[ext_resource type="Texture2D" uid="uid://c1s2hwyypq4xw" path="res://Assets/pngwing.com.png" id="1_k11ia"]
+[ext_resource type="PackedScene" uid="uid://cn0qvo0p6hqxd" path="res://Utility/hurt_box.tscn" id="3_e3ptd"]
+[ext_resource type="PackedScene" uid="uid://b6oe3vsvvfjsu" path="res://Utility/hit_box.tscn" id="4_lr23b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ws85x"]
+height = 37.4862
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5radb"]
+size = Vector2(32, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmuwa"]
+size = Vector2(16, 27)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_hs7nn")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -18)
+rotation = 3.14159
+scale = Vector2(0.0427138, -0.0567186)
+texture = ExtResource("1_k11ia")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17)
+scale = Vector2(0.872332, 0.907001)
+shape = SubResource("CapsuleShape2D_ws85x")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_e3ptd")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_5radb")
+
+[node name="HitBox" parent="." instance=ExtResource("4_lr23b")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, -17.5)
+shape = SubResource("RectangleShape2D_gmuwa")
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

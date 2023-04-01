@@ -1,19 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://behoiak0efutg"]
+[gd_scene load_steps=8 format=3 uid="uid://behoiak0efutg"]
 
 [ext_resource type="Script" path="res://Characters/player_slave.gd" id="1_d1bu4"]
 [ext_resource type="Texture2D" uid="uid://dsttc2ctf4102" path="res://Assets/Attack3.png" id="1_t0saw"]
+[ext_resource type="PackedScene" uid="uid://cn0qvo0p6hqxd" path="res://Utility/hurt_box.tscn" id="3_4h1ng"]
+[ext_resource type="PackedScene" uid="uid://b6oe3vsvvfjsu" path="res://Utility/hit_box.tscn" id="4_wp354"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4t1oi"]
-size = Vector2(21, 46)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_32soa"]
+height = 48.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5ty2"]
+size = Vector2(16, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bs1e7"]
+size = Vector2(43.5, 20)
 
 [node name="PlayerSlave" type="CharacterBody2D"]
 script = ExtResource("1_d1bu4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -23)
-shape = SubResource("RectangleShape2D_4t1oi")
+position = Vector2(-4, -27)
+shape = SubResource("CapsuleShape2D_32soa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3, -26)
+position = Vector2(-2, -27)
 texture = ExtResource("1_t0saw")
 hframes = 6
+
+[node name="HurtBox" parent="." instance=ExtResource("3_4h1ng")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-3, -21)
+shape = SubResource("RectangleShape2D_l5ty2")
+
+[node name="HitBox" parent="." instance=ExtResource("4_wp354")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(7.75, -26)
+shape = SubResource("RectangleShape2D_bs1e7")
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="HurtBox"]
+[editable path="HitBox"]
