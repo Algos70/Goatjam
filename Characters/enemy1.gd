@@ -22,7 +22,7 @@ var rng = RandomNumberGenerator.new()
 
 
 @onready var detectionRange = $"detectionRange"
-@onready var player = get_parent().get_node("PlayerSlave") #change player name
+@onready var player = get_parent().get_node("PlayerSlave") 
 @onready var animatedSprite: AnimatedSprite2D = $"AnimatedSprite2D" 
 
 func _process(delta):
