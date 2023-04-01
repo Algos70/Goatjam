@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://behoiak0efutg"]
+[gd_scene load_steps=15 format=3 uid="uid://behoiak0efutg"]
 
 [ext_resource type="Script" path="res://Characters/player_slave.gd" id="1_d1bu4"]
 [ext_resource type="PackedScene" uid="uid://cn0qvo0p6hqxd" path="res://Utility/hurt_box.tscn" id="3_4h1ng"]
@@ -25,7 +25,11 @@ region = Rect2(0, 0, 744, 1052)
 atlas = ExtResource("6_khn15")
 region = Rect2(0, 0, 744, 1052)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kjndn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmnnr"]
+atlas = ExtResource("6_khn15")
+region = Rect2(0, 0, 744, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5p0d"]
 atlas = ExtResource("7_7esuc")
 region = Rect2(0, 0, 744, 1052)
 
@@ -42,12 +46,20 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2hr28")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kjndn")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmnnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5p0d")
+}],
+"loop": true,
+"name": &"run",
 "speed": 5.0
 }]
 
