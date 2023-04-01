@@ -34,6 +34,11 @@ collision_mask = 2
 position = Vector2(-3, -21)
 shape = SubResource("RectangleShape2D_l5ty2")
 
+[node name="DisableTimer" parent="HurtBox" index="1"]
+wait_time = 1.0
+one_shot = false
+autostart = true
+
 [node name="HitBox" parent="." instance=ExtResource("4_wp354")]
 collision_layer = 4
 collision_mask = 4
@@ -41,6 +46,10 @@ collision_mask = 4
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(7.75, -26)
 shape = SubResource("RectangleShape2D_bs1e7")
+
+[node name="DisableHitBoxTimer" parent="HitBox" index="1"]
+one_shot = false
+autostart = true
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 

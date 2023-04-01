@@ -11,6 +11,8 @@ var canDefend = true
 
 var defenceCooldown = 0
 var animation_locked = false
+var animation_cooldown = 0
+var current_animation = "idle"
 var state = "idle"
 var landed = false
 var isOnEdge = false
@@ -24,6 +26,12 @@ var rng = RandomNumberGenerator.new()
 @onready var animatedSprite: AnimatedSprite2D = $"AnimatedSprite2D" 
 
 func _process(delta):
+	if (current_animation != "idle"):
+		update_animation("idle")
+	if animation_cooldown > 0:
+		animation_cooldown -= delta
+	else:
+		animation_locked = false
 	if defenceCooldown > 0:
 		defenceCooldown -= delta
 	else:
@@ -49,6 +57,7 @@ func _process(delta):
 		else:
 			velocity.x = IDLE_SPEED * (-1 if isFacingLeft else 1) 
 	elif state == "detected":
+		landed = false
 		if player.position.x < position.x:
 			velocity.x = -CHASE_SPEED
 			isFacingLeft = true
@@ -68,7 +77,6 @@ func on_player_attack():
 		defenceCooldown = 3
 		canDefend = false
 		update_animation("defend")
-		animation_locked = true
 		return true
 	return false
 		
@@ -83,8 +91,7 @@ func _on_hurt_box_hurt(damage):
 			queue_free() #if hp 0 or lower delete the enemy from the game
 			
 		move_and_slide()
-		animation_locked = false
-		update_animation("idle")
+
 
 
 func _on_detection_range_body_entered(body):
@@ -98,5 +105,12 @@ func _on_detection_range_body_exited(body):
 func update_animation(animation):
 	if not animation_locked:
 		animatedSprite.play(animation)
+		animation_locked = true
+		animation_cooldown = 0.8
+		current_animation = animation
 		
+func attack():
+	update_animation("attack")
+	
+	
 	

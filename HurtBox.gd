@@ -10,6 +10,7 @@ signal hurt(damage)
 #when enters area gets hurt
 func _on_area_entered(area):
 	if area.is_in_group("attack"):
+		get_tree().call_group("enemy", "attack")
 		if not area.get("damage") == null:
 			match HurtBoxType:
 				0: #cooldown
