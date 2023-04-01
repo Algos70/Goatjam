@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvlmco57nc14t"]
+[gd_scene load_steps=2 format=3 uid="uid://b8jmmvss0kxwm"]
 
-[ext_resource type="Script" path="res://UI/game_over_screen.gd" id="1_qclac"]
+[ext_resource type="Script" path="res://UI/Next_Level.gd" id="1_bh0hn"]
 
-[node name="GameOverScreen" type="CanvasLayer"]
-script = ExtResource("1_qclac")
+[node name="NextLevel" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_bh0hn")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -31,7 +32,7 @@ theme_override_constants/separation = 250
 [node name="Title" type="Label" parent="Panel/MarginContainer/Rows"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 86
-text = "GAME OVER"
+text = "You won!!"
 horizontal_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer/Rows"]
@@ -41,15 +42,15 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="RestartButton" type="Button" parent="Panel/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+[node name="NextButton" type="Button" parent="Panel/MarginContainer/Rows/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "  RESTART  "
+text = "  Next Level  "
 
 [node name="QuitButton" type="Button" parent="Panel/MarginContainer/Rows/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "  QUIT  "
 
-[connection signal="pressed" from="Panel/MarginContainer/Rows/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/Rows/CenterContainer/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
