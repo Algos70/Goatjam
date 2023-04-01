@@ -68,8 +68,6 @@ func _process(delta):
 	if velocity.x != 0:
 		get_node("Sprite2D").flip_h = isFacingLeft
 	
-
-	
 func _on_player_attack():
 	if canDefend:
 		defend()
