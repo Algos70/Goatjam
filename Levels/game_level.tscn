@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d23b3y32f42ie"]
+[gd_scene load_steps=9 format=3 uid="uid://d23b3y32f42ie"]
 
 [ext_resource type="PackedScene" uid="uid://behoiak0efutg" path="res://Characters/player_slave.tscn" id="1_4ufnx"]
 [ext_resource type="Script" path="res://Levels/game_level.gd" id="1_l0uqy"]
 [ext_resource type="PackedScene" uid="uid://doxf34jut7axf" path="res://Levels/Level_Objects/platform_air.tscn" id="2_73evd"]
 [ext_resource type="Texture2D" uid="uid://xsjoi3nshqle" path="res://Assets/Zemin Temiz.png" id="2_pu3yx"]
 [ext_resource type="PackedScene" uid="uid://bp035upb44qsh" path="res://Characters/enemy1.tscn" id="4_qxw5m"]
+[ext_resource type="PackedScene" uid="uid://eyoeo16wnl4p" path="res://Levels/Level_Objects/spikes_2.tscn" id="6_qkku5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wh5mi"]
 texture = ExtResource("2_pu3yx")
@@ -640,3 +641,7 @@ drag_vertical_enabled = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_qxw5m")]
 position = Vector2(455, -35)
+
+[node name="Spikes2" parent="." instance=ExtResource("6_qkku5")]
+position = Vector2(150, 70)
+scale = Vector2(0.503607, 0.37758)
