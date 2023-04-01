@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddrnj71svy8pc"]
+[gd_scene load_steps=10 format=3 uid="uid://ddrnj71svy8pc"]
 
+[ext_resource type="Script" path="res://UI/welcome_page.gd" id="1_3n7ff"]
 [ext_resource type="AudioStream" uid="uid://gqqr2ktobers" path="res://Sound/Music/FonMusic.wav" id="1_aov7p"]
 [ext_resource type="Texture2D" uid="uid://dl4lmaeknrja" path="res://Assets/arenaResim.jpg" id="2_kdbko"]
 [ext_resource type="Texture2D" uid="uid://ped28jnm3dbw" path="res://Assets/Düƒman Saldìrì.png" id="3_kcoyq"]
@@ -16,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3n7ff")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_aov7p")
@@ -104,6 +106,8 @@ script = ExtResource("8_1v0i0")
 volume_db = 1.0
 
 [connection signal="mouse_entered" from="Play" to="Play" method="_on_mouse_entered"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
 [connection signal="mouse_entered" from="Quit" to="Quit" method="_on_mouse_entered"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
