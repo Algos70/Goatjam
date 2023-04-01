@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbu3ibv4qbvd"]
+[gd_scene load_steps=10 format=3 uid="uid://cbu3ibv4qbvd"]
 
 [ext_resource type="Texture2D" uid="uid://bmt68o5gxaj5" path="res://Assets/Gokhan_Assets/svgtopng_2/Backgorund giriş.png" id="1_ubctt"]
 [ext_resource type="Script" path="res://Levels/arena_2.gd" id="1_w5dp4"]
 [ext_resource type="Texture2D" uid="uid://bi8sox2e4jy2v" path="res://Assets/Gokhan_Assets/svgtopng_2/Backgorund çıkış.png" id="2_74ris"]
 [ext_resource type="PackedScene" uid="uid://behoiak0efutg" path="res://Characters/player_slave.tscn" id="3_4gcll"]
+[ext_resource type="PackedScene" uid="uid://doxf34jut7axf" path="res://Levels/Level_Objects/platform_air.tscn" id="5_0rw64"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f4ix2"]
 texture = ExtResource("1_ubctt")
@@ -13854,3 +13855,7 @@ process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="Platform3" parent="." instance=ExtResource("5_0rw64")]
+position = Vector2(476, 493)
+scale = Vector2(0.433973, 0.469662)
