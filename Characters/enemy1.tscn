@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bp035upb44qsh"]
+[gd_scene load_steps=21 format=3 uid="uid://bp035upb44qsh"]
 
 [ext_resource type="Script" path="res://Characters/enemy1.gd" id="1_hs7nn"]
 [ext_resource type="PackedScene" uid="uid://cn0qvo0p6hqxd" path="res://Utility/hurt_box.tscn" id="3_e3ptd"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dge5r4x8gof7b" path="res://Assets/Gokhan_Assets/svgtopng_3/Düşman Savunma .png" id="7_yikf2"]
 [ext_resource type="Texture2D" uid="uid://dl1gy24spk5x2" path="res://Assets/Gokhan_Assets/svgtopng_3/Düşman Normal.png" id="8_o23jr"]
 [ext_resource type="Texture2D" uid="uid://tw16ap62u3p6" path="res://Assets/Gokhan_Assets/svgtopng_3/Düşman Normal Hareket.png" id="9_cl1dx"]
+[ext_resource type="Texture2D" uid="uid://cupuo31rpfsnp" path="res://Assets/bigger-blood-effect.png" id="9_wkwaj"]
+[ext_resource type="Animation" uid="uid://s5k3lryxyctc" path="res://Hit.res" id="10_c4bbw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7hv0"]
 radius = 16.0489
@@ -65,6 +67,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xbwu5"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gul0m"]
+_data = {
+"Hit": ExtResource("10_c4bbw")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_hs7nn")
 
@@ -108,6 +121,24 @@ scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_a4n7l")
 animation = &"attack"
 autoplay = "idle"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(2, -21)
+scale = Vector2(0.1, 0.1)
+emitting = false
+amount = 20
+sub_emitter = NodePath(".")
+process_material = SubResource("ParticleProcessMaterial_xbwu5")
+texture = ExtResource("9_wkwaj")
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.7
+visibility_rect = Rect2(0, 0, 20, 20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gul0m")
+}
 
 [connection signal="freeMem" from="." to="HurtBox" method="_on_character_body_2d_free_mem"]
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
