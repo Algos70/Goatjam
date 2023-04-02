@@ -7,10 +7,12 @@ var leftPressed = false
 var rightPressed = true
 var is_attacking = false
 var attack_animation_cooldown = 1
+var isFacingLeft = false
 
 @onready var sprite = $AnimatedSprite2D
 @onready var hitBox = $HitBox/CollisionShape2D
 @onready var hpBar = $HealthBar/ProgressBar
+@onready var animationPlayer = $"AnimationPlayer"
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -50,12 +52,14 @@ func _physics_process(delta):
 	#flipping collisionshapes and sprite mumbo jumbo
 	if Input.is_action_just_pressed("left"):
 		sprite.flip_h = true
+		isFacingLeft = true
 		if not leftPressed:
 			hitBox.position.x *= -1
 			rightPressed = false
 			leftPressed = true
 	if Input.is_action_just_pressed("right"):
 		sprite.flip_h = false
+		isFacingLeft = false
 		if not rightPressed:
 			hitBox.position.x *= -1
 			leftPressed = false
@@ -63,6 +67,10 @@ func _physics_process(delta):
 
 
 func _on_hurt_box_hurt(damage):
+	if isFacingLeft:
+		animationPlayer.play("HitFaceLeft")
+	else:
+		animationPlayer.play("HitFaceRight")
 	hp -= damage
 	hpBar.value -= damage
 	if hp <= 0:
