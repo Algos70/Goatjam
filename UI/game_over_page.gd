@@ -1,6 +1,7 @@
 extends Control
 
 @onready var click_sound = $Quit2/Click
+@onready var pressed_sound = $Quit2/Pressed
 
 
 func _ready():
@@ -9,6 +10,7 @@ func _ready():
 
 
 func _on_restart_pressed():
+	pressed_sound.play()
 	get_tree().change_scene_to_file("res://Levels/game_level.tscn")
 
 

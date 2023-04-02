@@ -1,11 +1,13 @@
 extends Control
 
 @onready var Click = $Play/Click
+@onready var pressed = $Play/Pressed
 
 func _ready():
 	pass
 
 func _on_play_pressed():
+	pressed.play()
 	get_tree().change_scene_to_file("res://Levels/game_level.tscn")
 
 

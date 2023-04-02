@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd1p307fsmex8"]
+[gd_scene load_steps=7 format=3 uid="uid://cd1p307fsmex8"]
 
 [ext_resource type="Script" path="res://UI/next_level.gd" id="1_a0ve5"]
 [ext_resource type="Texture2D" uid="uid://dl4lmaeknrja" path="res://Assets/arenaResim.jpg" id="2_vajha"]
 [ext_resource type="FontFile" uid="uid://bky0mpdfsladh" path="res://Assets/04B_30__.TTF" id="3_1njj7"]
 [ext_resource type="Script" path="res://UI/Play.gd" id="4_4shrs"]
+[ext_resource type="AudioStream" uid="uid://bmao8uvp34rgs" path="res://Sound/Effects/pressed.mp3" id="5_6f25m"]
 [ext_resource type="Script" path="res://UI/Quit.gd" id="5_xpqqq"]
 
 [node name="Next Level" type="Control"]
@@ -48,7 +49,7 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="Restart" type="Button" parent="."]
+[node name="Next" type="Button" parent="."]
 layout_mode = 0
 offset_left = 704.0
 offset_top = 363.0
@@ -61,8 +62,11 @@ theme_override_font_sizes/font_size = 40
 text = "NEXT ARENA"
 script = ExtResource("4_4shrs")
 
-[node name="Click" type="AudioStreamPlayer" parent="Restart"]
+[node name="Click" type="AudioStreamPlayer" parent="Next"]
 volume_db = 1.0
+
+[node name="Pressed" type="AudioStreamPlayer" parent="Next"]
+stream = ExtResource("5_6f25m")
 
 [node name="Quit2" type="Button" parent="."]
 layout_mode = 0
@@ -80,9 +84,9 @@ script = ExtResource("5_xpqqq")
 [node name="Click" type="AudioStreamPlayer" parent="Quit2"]
 volume_db = 1.0
 
-[connection signal="mouse_entered" from="Restart" to="Restart" method="_on_mouse_entered" flags=18]
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="Restart" to="Restart" method="_on_pressed" flags=18]
+[connection signal="mouse_entered" from="Next" to="Next" method="_on_mouse_entered" flags=18]
+[connection signal="pressed" from="Next" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Next" to="Next" method="_on_pressed" flags=18]
 [connection signal="mouse_entered" from="Quit2" to="Quit2" method="_on_mouse_entered" flags=18]
 [connection signal="pressed" from="Quit2" to="." method="_on_quit_2_pressed"]
 [connection signal="pressed" from="Quit2" to="Quit2" method="_on_pressed" flags=18]
