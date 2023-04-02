@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cd1p307fsmex8"]
+[gd_scene load_steps=8 format=3 uid="uid://cd1p307fsmex8"]
 
 [ext_resource type="Script" path="res://UI/next_level.gd" id="1_a0ve5"]
-[ext_resource type="Texture2D" uid="uid://dl4lmaeknrja" path="res://Assets/arenaResim.jpg" id="2_vajha"]
+[ext_resource type="Texture2D" uid="uid://ewt54tyt641u" path="res://Assets/fist.png" id="2_r3wso"]
 [ext_resource type="FontFile" uid="uid://bky0mpdfsladh" path="res://Assets/04B_30__.TTF" id="3_1njj7"]
 [ext_resource type="Script" path="res://UI/Play.gd" id="4_4shrs"]
 [ext_resource type="AudioStream" uid="uid://bmao8uvp34rgs" path="res://Sound/Effects/pressed.mp3" id="5_6f25m"]
+[ext_resource type="AudioStream" uid="uid://chop75h6ww8qq" path="res://Sound/Effects/Click.wav" id="5_tt437"]
 [ext_resource type="Script" path="res://UI/Quit.gd" id="5_xpqqq"]
 
 [node name="Next Level" type="Control"]
@@ -25,9 +26,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ArenaResim" type="Sprite2D" parent="MarginContainer"]
-position = Vector2(962, 538.5)
-scale = Vector2(1.74727, 1.68396)
-texture = ExtResource("2_vajha")
+position = Vector2(960, 540)
+scale = Vector2(1.875, 1.05469)
+texture = ExtResource("2_r3wso")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -44,11 +45,6 @@ text = "YOU WIN!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quit" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
 [node name="Next" type="Button" parent="."]
 layout_mode = 0
 offset_left = 704.0
@@ -63,6 +59,7 @@ text = "NEXT ARENA"
 script = ExtResource("4_4shrs")
 
 [node name="Click" type="AudioStreamPlayer" parent="Next"]
+stream = ExtResource("5_tt437")
 volume_db = 1.0
 
 [node name="Pressed" type="AudioStreamPlayer" parent="Next"]
@@ -82,11 +79,14 @@ text = "QUIT"
 script = ExtResource("5_xpqqq")
 
 [node name="Click" type="AudioStreamPlayer" parent="Quit2"]
+stream = ExtResource("5_tt437")
 volume_db = 1.0
 
+[connection signal="mouse_entered" from="Next" to="." method="_on_next_mouse_entered"]
 [connection signal="mouse_entered" from="Next" to="Next" method="_on_mouse_entered" flags=18]
 [connection signal="pressed" from="Next" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Next" to="Next" method="_on_pressed" flags=18]
+[connection signal="mouse_entered" from="Quit2" to="." method="_on_quit_2_mouse_entered"]
 [connection signal="mouse_entered" from="Quit2" to="Quit2" method="_on_mouse_entered" flags=18]
 [connection signal="pressed" from="Quit2" to="." method="_on_quit_2_pressed"]
 [connection signal="pressed" from="Quit2" to="Quit2" method="_on_pressed" flags=18]

@@ -10,9 +10,15 @@ var attack_animation_cooldown = 1
 
 @onready var sprite = $AnimatedSprite2D
 @onready var hitBox = $HitBox/CollisionShape2D
+@onready var hpBar = $HealthBar/ProgressBar
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	hpBar.max_value = hp
+	hpBar.value = hp
 
 func _physics_process(delta):
 	if attack_animation_cooldown > 0:
@@ -58,6 +64,7 @@ func _physics_process(delta):
 
 func _on_hurt_box_hurt(damage):
 	hp -= damage
+	hpBar.value -= damage
 	if hp <= 0:
 		get_tree().change_scene_to_file("res://UI/game_over_page.tscn")
 	print(hp)
