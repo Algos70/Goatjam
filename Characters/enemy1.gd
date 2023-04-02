@@ -23,7 +23,15 @@ signal freeMem
 @onready var detectionRange = $"detectionRange"
 @onready var player = get_parent().get_node("PlayerSlave") 
 @onready var animatedSprite: AnimatedSprite2D = $"AnimatedSprite2D" 
+<<<<<<< HEAD
 @onready var animationPlayer: AnimationPlayer = $"AnimationPlayer"
+=======
+@onready var hpBar = $HealthBar/ProgressBar
+
+func _ready():
+	hpBar.max_value = hp
+	hpBar.value = hp
+>>>>>>> cb8e3095cb0ecf0522730bce9cca6aaeb7ec22c4
 
 func _process(delta):
 	if defenceCooldown > 0:
@@ -81,10 +89,14 @@ func _on_hurt_box_hurt(damage):
 		get_tree().call_group("player", "startAttack")
 		var protected = on_player_attack()
 		if (not protected):
+<<<<<<< HEAD
 			if isFacingLeft:
 				animationPlayer.play("HitFaceLeft")
 			else:
 				animationPlayer.play("HitFaceRight")
+=======
+			hpBar.value -= damage
+>>>>>>> cb8e3095cb0ecf0522730bce9cca6aaeb7ec22c4
 			hp -= damage
 	if hp <= 0:
 		emit_signal("freeMem") #hp 0 or lower delete the enemy from the game

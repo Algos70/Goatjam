@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=23 format=3 uid="uid://bp035upb44qsh"]
+=======
+[gd_scene load_steps=22 format=3 uid="uid://bp035upb44qsh"]
+>>>>>>> cb8e3095cb0ecf0522730bce9cca6aaeb7ec22c4
 
 [ext_resource type="Script" path="res://Characters/enemy1.gd" id="1_hs7nn"]
 [ext_resource type="PackedScene" uid="uid://cn0qvo0p6hqxd" path="res://Utility/hurt_box.tscn" id="3_e3ptd"]
@@ -10,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://tw16ap62u3p6" path="res://Assets/Gokhan_Assets/svgtopng_3/Düşman Normal Hareket.png" id="9_cl1dx"]
 [ext_resource type="Texture2D" uid="uid://cupuo31rpfsnp" path="res://Assets/bigger-blood-effect.png" id="9_wkwaj"]
 [ext_resource type="Animation" uid="uid://s5k3lryxyctc" path="res://Hit.res" id="10_c4bbw"]
+[ext_resource type="PackedScene" uid="uid://b6fskwdvwwgm4" path="res://Utility/health_bar.tscn" id="11_2n7i7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7hv0"]
 radius = 16.0489
@@ -197,6 +202,19 @@ libraries = {
 "": SubResource("AnimationLibrary_gul0m")
 }
 
+[node name="HealthBar" parent="." instance=ExtResource("11_2n7i7")]
+offset_left = -75.0
+offset_top = -126.0
+offset_right = -75.0
+offset_bottom = -126.0
+scale = Vector2(0.0973742, 0.13425)
+
+[node name="ProgressBar" parent="HealthBar" index="0"]
+offset_left = 267.011
+offset_top = 506.518
+offset_right = 1305.01
+offset_bottom = 588.518
+
 [connection signal="freeMem" from="." to="HurtBox" method="_on_character_body_2d_free_mem"]
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="detectionRange" to="." method="_on_detection_range_body_entered"]
@@ -204,3 +222,4 @@ libraries = {
 
 [editable path="HurtBox"]
 [editable path="HitBox"]
+[editable path="HealthBar"]
