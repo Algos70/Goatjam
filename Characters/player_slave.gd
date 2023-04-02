@@ -13,6 +13,9 @@ var isFacingLeft = false
 @onready var hitBox = $HitBox/CollisionShape2D
 @onready var hpBar = $HealthBar/ProgressBar
 @onready var animationPlayer = $"AnimationPlayer"
+@onready var swordSoundPlayer = $"SwordSplash"
+@onready var playerTookDmgPlayer = $"PlayerTookDamage"
+@onready var playerDie = $"PlayerDie"
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -67,19 +70,23 @@ func _physics_process(delta):
 
 
 func _on_hurt_box_hurt(damage):
+	hp -= damage
+	hpBar.value -= damage
 	if isFacingLeft:
 		animationPlayer.play("HitFaceLeft")
 	else:
 		animationPlayer.play("HitFaceRight")
-	hp -= damage
-	hpBar.value -= damage
 	if hp <= 0:
+		playerDie.play(0)
 		get_tree().change_scene_to_file("res://UI/game_over_page.tscn")
+	else:
+		playerTookDmgPlayer.play()
 	print(hp)
 
 func startAttack():
 	attack_animation_cooldown = 1
 	is_attacking = true
 	sprite.play("attack")
+	swordSoundPlayer.play(0)
 func endAttack():
 	sprite.play("run")
