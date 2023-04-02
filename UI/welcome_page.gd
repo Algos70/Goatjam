@@ -17,3 +17,8 @@ func _on_quit_pressed():
 
 func _on_play_mouse_entered():
 	Click.play()
+
+
+func _on_controls_pressed():
+	pressed.play()
+	get_tree().change_scene_to_file("res://UI/control_page.tscn")
